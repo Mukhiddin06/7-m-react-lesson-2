@@ -34,7 +34,9 @@ const Login = () => {
             setTitle("Your message was sent eror.")
         }
     };
-
+    const moveRegister =(e) =>{
+        navigate("/sign-up")
+    }
     return (
         <>
         <div className="container">
@@ -48,6 +50,7 @@ const Login = () => {
                     <form id="submit" onSubmit={handleSubmit}>
                         <TextField sx={{marginBottom:'10px', width:'400px'}} type="text" name="username" onChange={handleChange} className="card-user"  id="outlined-basic" label="Username" variant="outlined" />
                         <TextField sx={{width:'400px'}} type="text" name="password"  onChange={handleChange} className="card-password" id="outlined-basic" label="Password" variant="outlined" />
+                        <Button type="submit" sx={{marginTop:'15px'}} onClick={moveRegister} variant="contained">Register</Button>
                     </form>
                 </div>
                 <div className="card-foooter">
