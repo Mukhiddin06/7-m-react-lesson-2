@@ -2,9 +2,11 @@ import { useState } from "react";
 import { auth } from "../../service";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import VerifyModal from "../modal/modal";
 import "./sign-up.css";
 
 const SignUp = () => {
+    const [modal, setModal] = useState(false)
     const [form, setForm] = useState({});
 
     const handleChange = (event) => {
@@ -16,7 +18,10 @@ const SignUp = () => {
         e.preventDefault();
         try{
             const response = await auth.sign_up(form)
-            console.log(response);
+            if(response.status === 200){
+                setModal(true)
+                localStorage.setItem("email", form.email)
+            }
         }catch(error){
             console.log(error);
         }
@@ -25,6 +30,7 @@ const SignUp = () => {
     return (
         <>
         <div className="container">
+            <VerifyModal open={modal} toggle={()=>setModal(false)}/>
             <div className="card-wrapper">
             <div className="card">
                 <div className="card-header">
